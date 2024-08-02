@@ -59,7 +59,7 @@ namespace SocialNetwork.BLL.Services
             var findUserEntity = userRepository.FindByEmail(userAuthenticationData.Email);
             if (findUserEntity is null) throw new UserNotFoundException();//сущность не найдена
 
-            if (findUserEntity.password != userAuthenticationData.Password)
+            if (findUserEntity.password != userAuthenticationData.Password)//сущность найдена, проверка пароля
                 throw new WrongPasswordException();
 
             return ConstructUserModel(findUserEntity);
@@ -70,6 +70,10 @@ namespace SocialNetwork.BLL.Services
             if (findUserEntity is null) throw new UserNotFoundException();
             return ConstructUserModel(findUserEntity);
         }
+
+        /// <summary>
+        /// обновление данных пользователя
+        /// </summary>        
         public void Update (User user)
         {
             var updatableUserEntity = new UserEntity()
@@ -83,7 +87,8 @@ namespace SocialNetwork.BLL.Services
                 favorite_book = user.FavoriteBook,
                 favorite_movie = user.FavoriteMovie
             };
-            if (this.userRepository.Update(updatableUserEntity) == 0)
+
+            if (this.userRepository.Update(updatableUserEntity) == 0)//если вернулся ноль, то произошло исключение, в противном случае все изменилось
                 throw new Exception();
         }
         private User ConstructUserModel(UserEntity userEntity)

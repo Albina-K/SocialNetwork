@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.BLL.Models
 {
+    /// <summary>
+    /// прием данных для регистрации
+    /// </summary>
     public class UserRegistrationData
     {
         public string FirstName {  get; set; }

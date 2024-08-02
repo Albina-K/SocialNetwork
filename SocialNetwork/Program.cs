@@ -47,14 +47,14 @@ namespace SocialNetwork
                                             {
                                                 Console.ForegroundColor = ConsoleColor.Green;
                                                 Console.WriteLine("Информация о моем профиле");
-                                                Console.WriteLine($"Мой идентификатор {0}", user.Id);
-                                                Console.WriteLine($"Меня зовут {0}", user.FirstName);
-                                                Console.WriteLine($"Моя фамилия {0}", user.LastName);
-                                                Console.WriteLine($"Мой пароль {0}", user.Password);
-                                                Console.WriteLine($"Мой почтовый адрес {0}", user.Email);
-                                                Console.WriteLine($"Ссылка на мое фото {0}", user.Photo);
-                                                Console.WriteLine($"Мой любимый фильм {0}", user.FavoriteMovie);
-                                                Console.WriteLine($"Моя любимая книга {0}", user.FavoriteBook);
+                                                Console.WriteLine("Мой идентификатор {0}", user.Id);
+                                                Console.WriteLine("Меня зовут {0}", user.FirstName);
+                                                Console.WriteLine("Моя фамилия {0}", user.LastName);
+                                                Console.WriteLine("Мой пароль {0}", user.Password);
+                                                Console.WriteLine("Мой почтовый адрес {0}", user.Email);
+                                                Console.WriteLine("Ссылка на мое фото {0}", user.Photo);
+                                                Console.WriteLine("Мой любимый фильм {0}", user.FavoriteMovie);
+                                                Console.WriteLine("Моя любимая книга {0}", user.FavoriteBook);
                                                 Console.ForegroundColor = ConsoleColor.White;
                                                 break;
                                             }
@@ -66,19 +66,19 @@ namespace SocialNetwork
                                                 Console.Write("Моя фамилия ");
                                                 user.LastName = Console.ReadLine();
 
-                                                Console.Write("Ссылка на мое фото");
+                                                Console.Write("Ссылка на мое фото ");
                                                 user.Photo = Console.ReadLine();
 
-                                                Console.Write("Моя люимая книга");
-                                                user.FavoriteBook = Console.ReadLine();
-
-                                                Console.Write("Мой любимый фильм");
+                                                Console.Write("Мой любимый фильм ");
                                                 user.FavoriteMovie = Console.ReadLine();
+
+                                                Console.Write("Моя любимая книга ");
+                                                user.FavoriteBook = Console.ReadLine();
 
                                                 userService.Update(user);
 
                                                 Console.ForegroundColor = ConsoleColor.Green;
-                                                Console.WriteLine();
+                                                Console.WriteLine("Ваш профиль успешно обновлен");
                                                 Console.ForegroundColor = ConsoleColor.White;
 
                                                 break;
