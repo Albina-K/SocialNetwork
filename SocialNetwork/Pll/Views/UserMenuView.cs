@@ -19,8 +19,8 @@ namespace SocialNetwork.Pll.Views
         {
             while (true)
             {
-                Console.WriteLine("Входящие сообщения: {0}", user.IncomingMessage.Count());
-                Console.WriteLine("Исходящие сообщения: {0}", user.OutgoingMessage.Count());
+                Console.WriteLine("Входящие сообщения: {0}", user.IncomingMessages.Count());
+                Console.WriteLine("Исходящие сообщения: {0}", user.OutgoingMessages.Count());
 
                 Console.WriteLine("Посмотреть информацию о моем профиле (нажмите 1)");
                 Console.WriteLine("Редактировать мой профиль (нажмите 2)");
@@ -53,11 +53,11 @@ namespace SocialNetwork.Pll.Views
                         }
                     case "5":
                         {
-                            Program.userIncomingMessageView.Show(user); break;
+                            Program.userIncomingMessageView.Show(user.IncomingMessages); break;
                         }
                     case "6":
                         {
-                            Program.userOutcomingMessageView.Show(user); break;
+                            Program.userOutcomingMessageView.Show(user.OutgoingMessages); break;
                         }
                 }
             }

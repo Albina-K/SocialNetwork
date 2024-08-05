@@ -28,7 +28,7 @@ namespace SocialNetwork.BLL.Services
                 var senderUserEntity = userRepository.FindById(m.sender_id);
                 var recipientUserEntity = userRepository.FindById(m.recipient_id);
 
-                message.Add(new Message(m.id, m.content, senderUserEntity.email, recipientUserEntity.email));
+                messages.Add(new Message(m.id, m.content, senderUserEntity.email, recipientUserEntity.email));
             });
             return messages;
         }

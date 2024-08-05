@@ -1,5 +1,6 @@
 ﻿using SocialNetwork.BLL.Models;
 using SocialNetwork.BLL.Services;
+using SocialNetwork.Pll.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,24 @@ namespace SocialNetwork.Pll.Views
             userRegistrationData.Password = Console.ReadLine();  
             
             Console.WriteLine("Почтовый адрес: ");
-            userRegistrationData.Email = Console.ReadLine();               
+            userRegistrationData.Email = Console.ReadLine();
+
+            try
+            {
+                this.userService.Register(userRegistrationData);
+
+                SuccessMessage.Show("Ваш профиль успешно создан.Теперь вы можете войти в систему под своими учетными данными.");
+            }
+
+            catch (ArgumentNullException)
+            {
+                AlertMessage.Show("Введите корректное значение");
+            }
+
+            catch (Exception)
+            {
+                AlertMessage.Show("Произошла ошибка при регистрации.");
+            }
         }
     }
 }

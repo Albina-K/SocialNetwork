@@ -38,7 +38,7 @@ namespace SocialNetwork.Pll.Views
 
                 SuccessMessage.Show("Сообщение успешно отправлено!");
 
-                user = userService.FindById(user Id);
+                user = userService.FindById(user.Id);
             }
             catch (UserNotFoundException)
             {
@@ -50,7 +50,7 @@ namespace SocialNetwork.Pll.Views
             }
             catch (Exception)
             {
-                AlertMessage.Show("Произошла ошибка при отправке сообщение!");
+                AlertMessage.Show("Произошла ошибка при отправке сообщения!");
             }
         }
     }
