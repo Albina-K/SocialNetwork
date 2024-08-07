@@ -2,6 +2,7 @@
 using SocialNetwork.BLL.Exceptions;
 using SocialNetwork.BLL.Models;
 using NUnit.Framework;
+using Moq;
 
 namespace SocialNetwork.Tests
 {
