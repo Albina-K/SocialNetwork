@@ -12,7 +12,7 @@ namespace SocialNetwork.Pll.Views
         public void Show()
         {
             Console.WriteLine("Войти в профиль (нажмите 1)");
-            Console.WriteLine("Зарегестрироваться (нажмите 2)");
+            Console.WriteLine("Зарегистрироваться (нажмите 2)");
 
             switch (Console.ReadLine())
             {

@@ -15,10 +15,12 @@ namespace SocialNetwork.BLL.Services
     {
         IUserRepository userRepository;
         MessageService messageService;
+        IFriendRepository friendRepository;
         public UserService() 
         {
             userRepository = new UserRepository();
             messageService = new MessageService();
+            friendRepository = new FriendRepository();
         }
         public void Register(UserRegistrationData userRegistrationData)
         {
@@ -99,11 +101,34 @@ namespace SocialNetwork.BLL.Services
             if (this.userRepository.Update(updatableUserEntity) == 0)//если вернулся ноль, то произошло исключение, в противном случае все изменилось
                 throw new Exception();
         }
+
+        public IEnumerable<User> GetFriendsByUserId(int userId)
+        {
+            return friendRepository.FindAllByUserId(userId)
+                .Select(friendsEntity => FindById(friendsEntity.friend_id));
+        }
+
+        public void AddFriend(UserAddingFriendData userAddingFriendData)
+        {
+            var findUserEntity = userRepository.FindByEmail(userAddingFriendData.FriendEmail);
+            if (findUserEntity is null) throw new UserNotFoundException();
+
+            var friendEntity = new FriendEntity()
+            {
+                user_id = userAddingFriendData.UserId,
+                friend_id = findUserEntity.id
+            };
+
+            if (this.friendRepository.Create(friendEntity) == 0)
+                throw new Exception();
+        }
         private User ConstructUserModel(UserEntity userEntity)
         {
             var incomingMessages = messageService.GetIncomingMessagesByUserId(userEntity.id);
 
             var outgoingMessages = messageService.GetOutcomingMessagesByUserId(userEntity.id);
+
+            var friends = GetFriendsByUserId(userEntity.id);
 
             return new User(
                 userEntity.id,
@@ -115,7 +140,8 @@ namespace SocialNetwork.BLL.Services
                 userEntity.favorite_book,
                 userEntity.favorite_movie,
                 incomingMessages,
-                outgoingMessages);
+                outgoingMessages,
+                friends);
         }
     }
 }
