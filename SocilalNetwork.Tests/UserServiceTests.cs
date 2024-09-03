@@ -19,8 +19,7 @@ namespace SocialNetwork.Tests
             UserService userService = new UserService();
             UserAuthenticationData userAuthenticationData = new UserAuthenticationData()
             {
-                Email = "gmail10@gmail.com"
-               // Password = "fffffff"
+                Email = "gmail10@gmail.com"               
             };
             
             Assert.Throws<UserNotFoundException>(() => userService.Authenticate(userAuthenticationData));
