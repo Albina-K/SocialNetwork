@@ -3,6 +3,10 @@ using SocialNetwork.BLL.Exceptions;
 using SocialNetwork.BLL.Models;
 using NUnit.Framework;
 using NUnit;
+using SocialNetwork.DAL.Repositories;
+using SocialNetwork.Pll.Views;
+using SocialNetwork.DAL.Entities;
+
 
 namespace SocialNetwork.Tests
 {
@@ -15,10 +19,11 @@ namespace SocialNetwork.Tests
             UserService userService = new UserService();
             UserAuthenticationData userAuthenticationData = new UserAuthenticationData()
             {
-                Email = "gmail2@gmail.com",
-                Password = "fffffff"
-            };            
-            Assert.Throws<WrongPasswordException>(() => userService.Authenticate(userAuthenticationData));
+                Email = "gmail10@gmail.com"
+               // Password = "fffffff"
+            };
+            
+            Assert.Throws<UserNotFoundException>(() => userService.Authenticate(userAuthenticationData));
         }
     }
 }
